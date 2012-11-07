@@ -35,6 +35,8 @@ public class PracticaGitHub {
             switch(opc)
             {
                 case 1:  //artista
+                    Artista artista = new Artista();
+                    artista.menuArtista();
                     break;
                 case 2:  //obra
                     break;
