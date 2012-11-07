@@ -1,6 +1,7 @@
 package practicagithub;
 
 import java.io.*;
+import java.util.*;
 
 public class PracticaGitHub {
 
@@ -36,7 +37,8 @@ public class PracticaGitHub {
             {
                 case 1:  //artista
                     Artista artista = new Artista();
-                    artista.menuArtista();
+                    List interpretes = new ArrayList<Artista>();
+                    artista.menuArtista(interpretes);
                     break;
                 case 2:  //obra
                     break;

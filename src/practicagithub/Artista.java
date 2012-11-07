@@ -15,9 +15,7 @@ public class Artista {
     
     private String nomArt;
     
-    private int anoNacimiento;
-    
-    private List<Artista> interpretes;
+    private int anoNacimiento;    
     
     private String resp="S";
     
@@ -57,12 +55,15 @@ public class Artista {
     }
     
     //Funcion para mostrar el menu de artista
-    public void menuArtista() throws IOException{
+    public void menuArtista(List<Artista> interpretes) throws IOException{
        
        InputStreamReader entrada = new InputStreamReader(System.in);
        BufferedReader buf = new BufferedReader(entrada);
-      // this.interpretes = new ArrayList<>();
        
+       if(interpretes == null){
+           interpretes = new ArrayList<Artista>();
+       }
+              
        while(this.resp.equals("S") || this.resp.equals("s")){
        
             System.out.print("Ingrese el nombre: ");
@@ -74,7 +75,7 @@ public class Artista {
             System.out.println("  Error el año de nacimiento, intentelo de nuevo.");
             }
             Artista artista = new Artista(nom,anoN);
-            this.interpretes.add(artista);
+            interpretes.add(artista);
             System.out.println("Desea agregar otro artista? S/N");
             resp = buf.readLine();
        } 
@@ -82,20 +83,29 @@ public class Artista {
        
     }
     
-    public Artista buscarArtista(String nom){
+    public Artista buscarArtista(String nom, List<Artista> interpretes){
     
        for(Artista art:interpretes){
            if(art.nomArt.equals(nom)){
                return art;               
            }
        }
-       return null;
+         return null;
     }
-
 
     public void mostrarDatosArtista(){
         System.out.println("\t Nombre Artista: "+this.nomArt);
         System.out.println("\t A#o Nacimiento: "+this.anoNacimiento);
     }
     
+    /**
+     *
+     * @param interpretes
+     */
+    public void listarArtistas(List<Artista> interpretes){
+    
+        for(Artista art:interpretes){
+            System.out.println("\t Nombre Artista: "+this.nomArt+" A#o Nacimiento: "+this.anoNacimiento);
+        }
+    }
 }
