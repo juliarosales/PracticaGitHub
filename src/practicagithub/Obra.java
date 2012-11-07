@@ -8,7 +8,7 @@ package practicagithub;
  *
  * @author Julia Rosales
  */
-public class Obra Artista{
+public class Obra extends Artista{
     
     private String titulo;
     
