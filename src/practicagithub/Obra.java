@@ -48,4 +48,11 @@ public class Obra{
     public void setAnoEdicion(int anoE){
         this.anoEdicion = anoE;
     }
+
+
+    public void mostrarDatos(){
+        System.out.println("\t Titulo : "+this.titulo);
+        System.out.println("\t Autor : "+this.autor.getNombre());
+        System.out.println("\t A#o de edicion : "+this.anoEdicion);
+    }
 }
