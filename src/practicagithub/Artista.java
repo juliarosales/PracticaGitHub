@@ -4,15 +4,26 @@
  */
 package practicagithub;
 
+import java.io.*;
+import java.util.*;
+
 /**
  *
  * @author Julia Rosales
  */
 public class Artista {
     
-    private String nombre;
+    private String nomArt;
     
     private int anoNacimiento;
+    
+    private List<Artista> interpretes;
+    
+    private String resp="S";
+    
+    private String nom;
+    
+    private int anoN;
     
     //Contructor sin parametros de la clase Artista
     public Artista(){}
@@ -20,7 +31,7 @@ public class Artista {
     //Constructor con parametros de la clase Artista
     public Artista(String nom, int anoN){
     
-        this.nombre = nom;
+        this.nomArt = nom;
         this.anoNacimiento = anoN;
                 
     }
@@ -37,11 +48,48 @@ public class Artista {
     
     //Funcion para obtener el nombre del artista
     public String getNombre(){
-        return this.nombre;
+        return this.nomArt;
     }
     
     //Funcion para guardar el nombre del artista
     public void setNombre(String nom){
-        this.nombre = nom;
+        this.nomArt = nom;
     }
+    
+    //Funcion para mostrar el menu de artista
+    public void menuArtista() throws IOException{
+       
+       InputStreamReader entrada = new InputStreamReader(System.in);
+       BufferedReader buf = new BufferedReader(entrada);
+       this.interpretes = new ArrayList<>();
+       
+       while(this.resp.equals("S") || this.resp.equals("s")){
+       
+            System.out.print("Ingrese el nombre: ");
+            nom = buf.readLine();
+            System.out.print("Ingrese el año de nacimiento: ");
+            try {
+                anoN = Integer.parseInt(buf.readLine());
+            } catch (NumberFormatException ex) {
+            System.out.println("  Error el año de nacimiento, intentelo de nuevo.");
+            }
+            Artista artista = new Artista(nom,anoN);
+            this.interpretes.add(artista);
+            System.out.println("Desea agregar otro artista? S/N");
+            resp = buf.readLine();
+       } 
+       
+       
+    }
+    
+    public Artista buscarArtista(String nom){
+    
+       for(Artista art:interpretes){
+           if(art.nomArt.equals(nom)){
+               return art;               
+           }
+       }
+       return null;
+    }
+    
 }
