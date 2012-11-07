@@ -61,7 +61,7 @@ public class Artista {
        
        InputStreamReader entrada = new InputStreamReader(System.in);
        BufferedReader buf = new BufferedReader(entrada);
-       this.interpretes = new ArrayList<>();
+      // this.interpretes = new ArrayList<>();
        
        while(this.resp.equals("S") || this.resp.equals("s")){
        
@@ -90,6 +90,12 @@ public class Artista {
            }
        }
        return null;
+    }
+
+
+    public void mostrarDatosArtista(){
+        System.out.println("\t Nombre Artista: "+this.nomArt);
+        System.out.println("\t A#o Nacimiento: "+this.anoNacimiento);
     }
     
 }

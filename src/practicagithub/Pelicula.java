@@ -60,7 +60,7 @@ public class Pelicula extends Obra {
         System.out.println("\t Interpretes : ");
         if(interpretes!=null){
             for (Artista artista : interpretes) {
-               // aqui invocar metodo de mostrar datos del artista
+               artista.mostrarDatosArtista();
             }
         }
 
