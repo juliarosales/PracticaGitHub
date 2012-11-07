@@ -5,6 +5,8 @@
 
 package practicagithub;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +66,16 @@ public class Pelicula extends Obra {
             }
         }
 
+    }
+
+    public void mostrarPeliculas(List<Pelicula> peliculas){
+        if(peliculas!=null && peliculas.size()>0){
+            for (Pelicula pelicula : peliculas) {
+                pelicula.mostrarDatosPelicula();
+            }
+        }else{
+            System.out.println("No  hay peliculas");
+        }
     }
 
 }
