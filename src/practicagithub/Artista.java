@@ -55,7 +55,7 @@ public class Artista {
     }
     
     //Funcion para mostrar el menu de artista
-    public void menuArtista(List<Artista> interpretes) throws IOException{
+    public void cargarDatosArtista(List<Artista> interpretes) throws IOException{
        
        InputStreamReader entrada = new InputStreamReader(System.in);
        BufferedReader buf = new BufferedReader(entrada);

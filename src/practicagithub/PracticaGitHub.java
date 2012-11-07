@@ -38,7 +38,7 @@ public class PracticaGitHub {
                 case 1:  //artista
                     Artista artista = new Artista();
                     List interpretes = new ArrayList<Artista>();
-                    artista.menuArtista(interpretes);
+                    artista.cargarDatosArtista(interpretes);
                     break;
                 case 2:  //obra
                     break;
