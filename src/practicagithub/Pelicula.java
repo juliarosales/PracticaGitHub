@@ -56,7 +56,7 @@ public class Pelicula extends Obra {
         return encontrados;
     }
 
-    public void mostrarDatosPelicula(){
+    public void mostrarDatos(){
         super.mostrarDatos();
         System.out.println("\t Productora : "+this.productora);
         System.out.println("\t Interpretes : ");
@@ -71,11 +71,101 @@ public class Pelicula extends Obra {
     public void mostrarPeliculas(List<Pelicula> peliculas){
         if(peliculas!=null && peliculas.size()>0){
             for (Pelicula pelicula : peliculas) {
-                pelicula.mostrarDatosPelicula();
+                pelicula.mostrarDatos();
             }
         }else{
             System.out.println("No  hay peliculas");
         }
+    }
+    
+    public void cargarDatos(List<Artista> artistas){
+       if(artistas==null || artistas.size()==0)
+       {
+           System.out.println("\n No puede crear peliculas hasta tener al menos un artista");
+           return;
+       }
+       InputStreamReader entrada = new InputStreamReader(System.in);
+       BufferedReader buf = new BufferedReader(entrada);
+       try{
+       System.out.println("\t Ingrese titulo : ");
+       this.setTitulo(buf.readLine());
+       boolean valido=false;
+       int ano=0;
+       while(!valido){
+         System.out.println("\t Ingrese A#o de Edicion ");
+         try{
+          ano=Integer.parseInt(buf.readLine().trim());
+          this.setAnoEdicion(ano);
+          valido=true;
+         }catch(Exception e){
+             System.out.println("\t Dato invalido");
+         }
+       }
+       
+       valido=false;
+       int limit=artistas.size();
+       while(!valido){
+           System.out.println("Elija Autor de la pelicula");
+           int iterador=1;
+           for (Artista artista : artistas) {
+               System.out.println(iterador+" - "+artista.getNombre());
+               iterador++;
+           }
+           
+          try{
+          ano=Integer.parseInt(buf.readLine().trim());
+          if(ano>0 && ano<=limit){
+              this.setAutor(artistas.get(ano-1));
+              valido=true;
+          }else{
+              System.out.println("\n valor invalido ");
+          }
+          
+         }catch(Exception e){
+             System.out.println("\t Dato invalido");
+         }
+           
+       }
+       
+           System.out.println("\n Ingrese Productora ");
+           this.setProductora(buf.readLine());
+           
+           System.out.println("\n Asocie interprete(s) a la pelicula ");
+           valido=false;
+           while(!valido){    
+           System.out.println("asocie interpretes");
+           int iterador=1;
+           for (Artista artista : artistas) {
+               System.out.println(iterador+" - "+artista.getNombre());
+               iterador++;
+           }
+           
+          try{
+          ano=Integer.parseInt(buf.readLine().trim());
+         
+          if(ano>0 && ano<=limit){
+            
+              this.agregarInterprete(artistas.get(ano-1));
+              
+           //   valido=true;
+          }else{
+              System.out.println("\n Dato invalido");
+          }
+              System.out.println(" Asociar otro interprete ? S para Si cualquier otra letra para no");    
+              String resp=buf.readLine().trim();
+              if(resp.compareToIgnoreCase("S")!=0){
+                  valido=true;
+              }
+          
+         }catch(Exception e){
+             System.out.println("\t Dato invalido");
+         }
+           
+       }
+       
+       }catch(Exception e){
+           
+       }
     }
 
 }
