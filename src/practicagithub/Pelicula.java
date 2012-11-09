@@ -47,8 +47,44 @@ public class Pelicula extends Obra {
         List<Pelicula> encontrados=new ArrayList<Pelicula>();
 
         if(peliculas!=null){
-            for (Pelicula pelicula : encontrados) {
+            for (Pelicula pelicula : peliculas) {
                 if(pelicula.getTitulo().compareToIgnoreCase(titulo)==0 ){
+                    encontrados.add(pelicula);
+                }
+            }
+        }
+        return encontrados;
+    }
+    public List<Pelicula> buscarPeliculaPorProductora( String productoraX, List<Pelicula> peliculas){
+        List<Pelicula> encontrados=new ArrayList<Pelicula>();
+
+        if(peliculas!=null){
+            for (Pelicula pelicula : peliculas) {
+                if(pelicula.getTitulo().compareToIgnoreCase(productoraX)==0 ){
+                    encontrados.add(pelicula);
+                }
+            }
+        }
+        return encontrados;
+    }
+    
+    public void listarProductoras( List<Pelicula> peliculas){
+        
+
+        if(peliculas!=null){
+            for (Pelicula pelicula : peliculas) {
+                System.out.println(" Productora : "+pelicula.getProductora());
+            }
+        }
+        
+    }
+    
+    public List<Pelicula> buscarPeliculaPorAutor( String autorX, List<Pelicula> peliculas){
+        List<Pelicula> encontrados=new ArrayList<Pelicula>();
+
+        if(peliculas!=null){
+            for (Pelicula pelicula : peliculas) {
+                if(pelicula.getAutor().getNombre().compareToIgnoreCase(autorX)==0 ){
                     encontrados.add(pelicula);
                 }
             }
