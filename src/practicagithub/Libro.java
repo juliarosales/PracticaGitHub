@@ -9,6 +9,9 @@
 
 package practicagithub;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author hedilberth delgado
@@ -50,8 +53,31 @@ public class Libro extends Obra {
     {
         this.nPaginas = nPaginas;
     }
+   
+    public List<Libro> buscarLibros (List<Libro> libros, String busqueda)
+    {
+        List<Libro> resultados = new ArrayList<>();
+        for (Libro libro : libros) {
+            if (libro.getTitulo().compareToIgnoreCase(busqueda) == 0 )
+            {
+                resultados.add(libro);
+            }
+        }
+        
+        for (Libro libro : libros) {
+            if (libro.getAutor().getNombre().compareToIgnoreCase(busqueda) == 0 )
+            {
+                resultados.add(libro);
+            }
+        }
+      
+        return resultados;
+    }
     public void imprimir()
     {
+        super.mostrarDatos();
+        System.out.println("\t Editorial : "+this.getEditorial() );
+        System.out.println("\t Número de Páginas : "+this.getNPaginas() );
     }
     
     
