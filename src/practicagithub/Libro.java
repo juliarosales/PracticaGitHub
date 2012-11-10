@@ -58,19 +58,12 @@ public class Libro extends Obra {
     {
         List<Libro> resultados = new ArrayList<>();
         for (Libro libro : libros) {
-            if (libro.getTitulo().compareToIgnoreCase(busqueda) == 0 )
+            if (libro.getTitulo().compareToIgnoreCase(busqueda) == 0 || libro.getAutor().getNombre().compareToIgnoreCase(busqueda) == 0 )
             {
                 resultados.add(libro);
             }
         }
         
-        for (Libro libro : libros) {
-            if (libro.getAutor().getNombre().compareToIgnoreCase(busqueda) == 0 )
-            {
-                resultados.add(libro);
-            }
-        }
-      
         return resultados;
     }
     public void imprimir()
