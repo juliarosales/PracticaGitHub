@@ -56,7 +56,7 @@ public class Libro extends Obra {
    
     public List<Libro> buscarLibros (List<Libro> libros, String busqueda)
     {
-        List<Libro> resultados = new ArrayList<>();
+        List<Libro> resultados = new ArrayList<Libro>();
         for (Libro libro : libros) {
             if (libro.getTitulo().compareToIgnoreCase(busqueda) == 0 || libro.getAutor().getNombre().compareToIgnoreCase(busqueda) == 0 )
             {
@@ -69,7 +69,7 @@ public class Libro extends Obra {
     
     public List<Libro> buscarLibrosPorEditorial (List<Libro> libros, String busqueda)
     {
-        List<Libro> resultados = new ArrayList<>();
+        List<Libro> resultados = new ArrayList<Libro>();
         for (Libro libro : libros) {
             if (libro.getEditorial().compareToIgnoreCase(busqueda) == 0 )
             {
@@ -82,7 +82,7 @@ public class Libro extends Obra {
     
     public List<Libro> buscarLibrosPorNPaginas (List<Libro> libros, String busqueda)
     {
-        List<Libro> resultados = new ArrayList<>();
+        List<Libro> resultados = new ArrayList<Libro>();
         for (Libro libro : libros) {
             if (libro.getNPaginas() == Integer.parseInt(busqueda) )
             {
@@ -98,6 +98,19 @@ public class Libro extends Obra {
         super.mostrarDatos();
         System.out.println("\t Editorial : "+this.getEditorial() );
         System.out.println("\t Número de Páginas : "+this.getNPaginas() );
+    }
+    
+    public void imprimirLibros(List<Libro> libros)
+    {
+        if(libros.size() >0)
+        {
+            for (Libro libro : libros) 
+            {
+                libro.imprimir();
+            }
+            
+        
+        }
     }
     
     
