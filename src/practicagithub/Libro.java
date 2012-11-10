@@ -68,6 +68,33 @@ public class Libro extends Obra {
         
         return resultados;
     }
+    
+    public List<Libro> buscarLibrosPorEditorial (List<Libro> libros, String busqueda)
+    {
+        List<Libro> resultados = new ArrayList<Libro>();
+        for (Libro libro : libros) {
+            if (libro.getEditorial().compareToIgnoreCase(busqueda) == 0 )
+            {
+                resultados.add(libro);
+            }
+        }
+        
+        return resultados;
+    }
+    
+    public List<Libro> buscarLibrosPorNPaginas (List<Libro> libros, String busqueda)
+    {
+        List<Libro> resultados = new ArrayList<Libro>();
+        for (Libro libro : libros) {
+            if (libro.getNPaginas() == Integer.parseInt(busqueda) )
+            {
+                resultados.add(libro);
+            }
+        }
+        
+        return resultados;
+    }
+    
     public void imprimir()
     {
         super.mostrarDatos();
@@ -75,6 +102,7 @@ public class Libro extends Obra {
         System.out.println("\t Número de Páginas : "+this.getNPaginas() );
     }
     
+
     public void cargarDatos(List<Artista> artistas){
        if(artistas==null || artistas.size()==0)
        {
@@ -147,4 +175,20 @@ public class Libro extends Obra {
            
        }
     }
+
+    public void imprimirLibros(List<Libro> libros)
+    {
+        if(libros.size() >0)
+        {
+            for (Libro libro : libros) 
+            {
+                libro.imprimir();
+            }
+            
+        
+        }
+    }
+    
+    
+
 }
