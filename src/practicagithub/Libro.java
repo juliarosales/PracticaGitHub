@@ -66,6 +66,33 @@ public class Libro extends Obra {
         
         return resultados;
     }
+    
+    public List<Libro> buscarLibrosPorEditorial (List<Libro> libros, String busqueda)
+    {
+        List<Libro> resultados = new ArrayList<>();
+        for (Libro libro : libros) {
+            if (libro.getEditorial().compareToIgnoreCase(busqueda) == 0 )
+            {
+                resultados.add(libro);
+            }
+        }
+        
+        return resultados;
+    }
+    
+    public List<Libro> buscarLibrosPorNPaginas (List<Libro> libros, String busqueda)
+    {
+        List<Libro> resultados = new ArrayList<>();
+        for (Libro libro : libros) {
+            if (libro.getNPaginas() == Integer.parseInt(busqueda) )
+            {
+                resultados.add(libro);
+            }
+        }
+        
+        return resultados;
+    }
+    
     public void imprimir()
     {
         super.mostrarDatos();
