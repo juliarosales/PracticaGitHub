@@ -106,7 +106,7 @@ public class Libro extends Obra {
     public void cargarDatos(List<Artista> artistas){
        if(artistas==null || artistas.size()==0)
        {
-           System.out.println("\n No puede crear peliculas hasta tener al menos un artista");
+           System.out.println("\n No puede crear libros hasta tener al menos un artista");
            return;
        }
        InputStreamReader entrada = new InputStreamReader(System.in);
