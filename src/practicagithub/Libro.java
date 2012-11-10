@@ -9,6 +9,8 @@
 
 package practicagithub;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class Libro extends Obra {
    
     public List<Libro> buscarLibros (List<Libro> libros, String busqueda)
     {
-        List<Libro> resultados = new ArrayList<>();
+        List<Libro> resultados = new ArrayList<Libro>();
         for (Libro libro : libros) {
             if (libro.getTitulo().compareToIgnoreCase(busqueda) == 0 || libro.getAutor().getNombre().compareToIgnoreCase(busqueda) == 0 )
             {
@@ -73,5 +75,76 @@ public class Libro extends Obra {
         System.out.println("\t Número de Páginas : "+this.getNPaginas() );
     }
     
-    
+    public void cargarDatos(List<Artista> artistas){
+       if(artistas==null || artistas.size()==0)
+       {
+           System.out.println("\n No puede crear peliculas hasta tener al menos un artista");
+           return;
+       }
+       InputStreamReader entrada = new InputStreamReader(System.in);
+       BufferedReader buf = new BufferedReader(entrada);
+       try{
+       System.out.println("\t Ingrese titulo : ");
+       this.setTitulo(buf.readLine());
+       boolean valido=false;
+       int ano=0;
+       while(!valido){
+         System.out.println("\t Ingrese A#o de Edicion ");
+         try{
+          ano=Integer.parseInt(buf.readLine().trim());
+          this.setAnoEdicion(ano);
+          valido=true;
+         }catch(Exception e){
+             System.out.println("\t Dato invalido");
+         }
+       }
+       
+       valido=false;
+       int limit=artistas.size();
+       while(!valido){
+           System.out.println("Elija Autor del libro");
+           int iterador=1;
+           for (Artista artista : artistas) {
+               System.out.println(iterador+" - "+artista.getNombre());
+               iterador++;
+           }
+           
+          try{
+          ano=Integer.parseInt(buf.readLine().trim());
+          if(ano>0 && ano<=limit){
+              this.setAutor(artistas.get(ano-1));
+              valido=true;
+          }else{
+              System.out.println("\n valor invalido ");
+          }
+          
+         }catch(Exception e){
+             System.out.println("\t Dato invalido");
+         }
+           
+       }
+       
+           System.out.println("\n Ingrese Editorial ");
+           this.setEditorial(buf.readLine());
+           
+           System.out.println("\n Ingrese numero de paginas");
+           valido=false;
+           while(!valido){    
+           
+           
+          try{
+             ano=Integer.parseInt(buf.readLine().trim());
+         valido=true;  
+         this.setNPaginas(ano);
+         }catch(Exception e){
+             System.out.println("\t Dato invalido");
+             valido=false;
+         }
+           
+       }
+       
+       }catch(Exception e){
+           
+       }
+    }
 }

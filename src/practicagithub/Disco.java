@@ -1,6 +1,5 @@
 package practicagithub;
 
-import java.io.*;
 import java.util.*;
 
 public class Disco extends Obra
@@ -55,7 +54,7 @@ public class Disco extends Obra
     // Busqueda de discos
     public List<Disco> buscardisco (List<Disco> discos, String busqueda)
     {
-        List<Disco> resultados = new ArrayList<>();
+        List<Disco> resultados = new ArrayList<Disco>();
         for (Disco disco : discos) 
         {
             if (disco.getTitulo().compareToIgnoreCase(busqueda) == 0 )
