@@ -82,6 +82,8 @@ public class PracticaGitHub {
     public void menuReportes() throws IOException
     {
         int opcrepo = 0;
+        String tituloParaBuscar;
+        List<Pelicula> peliculasEncontradas;
         InputStreamReader entrada = new InputStreamReader(System.in);
         BufferedReader buf = new BufferedReader(entrada);
         while (opcrepo != 5)
@@ -117,6 +119,17 @@ public class PracticaGitHub {
                     break;
                 case 4:
                     System.out.println("     Buscar películas por autor ");
+                    System.out.println("Introduzca un nombre para buscar por autor:");
+                    tituloParaBuscar = buf.readLine();
+                    peliculasEncontradas = pelicula.buscarPeliculaPorAutor(tituloParaBuscar, peliculas);
+                    if(peliculasEncontradas == null || peliculasEncontradas.isEmpty())
+                    {
+                           System.out.println("No se encontro ningun libro con esa editorial.");
+                    }
+                    else
+                    {
+                        pelicula.mostrarPeliculas(peliculasEncontradas);
+                    }                                       
                     break;
                 case 5:
                     System.out.println("\n  Volver al menu");
@@ -223,7 +236,6 @@ public class PracticaGitHub {
         }  
     
     }
-    
     public void menuLibro() throws IOException
     {
         int opc = 0;
@@ -482,8 +494,7 @@ public class PracticaGitHub {
                     break; 
                 default: 
                     System.out.println("\n  ** Opción Errada **");
-            };
-            
+            }            
         }    
     
     }
