@@ -1,5 +1,6 @@
 package practicagithub;
 
+import java.io.*;
 import java.util.*;
 
 public class Disco extends Obra
@@ -9,9 +10,7 @@ public class Disco extends Obra
     private List<Artista> interpretes;
     private String resp="S";
     
-    public Disco()
-    {
-    }
+    public Disco()    {}
     
     public Disco(String titulo, Artista autor, int anoEdicion, String discografia, int nCanciones)
     {
@@ -61,21 +60,39 @@ public class Disco extends Obra
         List<Disco> resultados = new ArrayList<Disco>();
         for (Disco disco : discos) 
         {
-            if (disco.getTitulo().compareToIgnoreCase(busqueda) == 0 )
+            if (disco.getTitulo().compareToIgnoreCase(busqueda) == 0 || disco.getAutor().getNombre().compareToIgnoreCase(busqueda) == 0 )
             {
                 resultados.add(disco);
             }
-        }
+        }        
         
-        for (Disco disco : discos) 
-        {
-            if (disco.getAutor().getNombre().compareToIgnoreCase(busqueda) == 0 )
-            {
-                resultados.add(disco);
+        return resultados;
+    }
+    
+    public List<Disco> buscarDiscoPorDiscografia( String titulo, List<Disco> discos){
+        List<Disco> encontrados=new ArrayList<Disco>();
+
+        if(discos!=null){
+            for (Disco disco : discos) {
+                if(disco.getDiscografia().compareToIgnoreCase(titulo)==0 ){
+                    encontrados.add(disco);
+                }
             }
         }
-      
-        return resultados;
+        return encontrados;
+    }
+    
+        public List<Disco> buscarDiscoPorCanciones( String cancion, List<Disco> discos){
+        List<Disco> encontrados=new ArrayList<Disco>();
+
+        if(discos!=null){
+            for (Disco disco : discos) {
+                if(disco.getDiscografia().compareToIgnoreCase(cancion)==0 ){
+                    encontrados.add(disco);
+                }
+            }
+        }
+        return encontrados;
     }
     
 }
