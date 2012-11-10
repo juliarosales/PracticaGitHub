@@ -105,7 +105,7 @@ public class Artista {
     public void listarArtistas(List<Artista> interpretes){
     
         for(Artista art:interpretes){
-            System.out.println("\t Nombre Artista: "+this.nomArt+" A#o Nacimiento: "+this.anoNacimiento);
+            System.out.println("\t Nombre Artista: "+art.nomArt+" A#o Nacimiento: "+art.anoNacimiento);
         }
     }
 }
