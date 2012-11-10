@@ -9,6 +9,10 @@ public class Disco extends Obra
     private List<Artista> interpretes;
     private String resp="S";
     
+    public Disco()
+    {
+    }
+    
     public Disco(String titulo, Artista autor, int anoEdicion, String discografia, int nCanciones)
     {
         this.setTitulo(titulo);
