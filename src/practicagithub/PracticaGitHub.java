@@ -374,10 +374,15 @@ public class PracticaGitHub {
             switch(opc)
             {
                 case 1: 
+                    disco.cargarDatos(artistas);
+                    discos.add(disco);
+                    disco = new Disco();
                     break;
                 case 2:
+                    subMenuBuscarDiscos();
                     break;
                 case 3:
+                    disco.imprimirDisco(discos);
                     break;
                 case 4: // Reportes
                     return;
@@ -499,4 +504,70 @@ public class PracticaGitHub {
     
     }
     
+    public void subMenuBuscarDiscos() throws IOException
+    {
+        int opc = 0;
+        String tituloParaBuscar;
+        List<Disco> discosEncontrados;
+        InputStreamReader entrada = new InputStreamReader(System.in);
+        BufferedReader buf = new BufferedReader(entrada);
+        while (opc != 3)
+        {
+            System.out.println("\n\t   ** Busquedas: ** ");
+            System.out.println(" \t Por Titulo  ");
+            System.out.println(" \t Por Discografia");
+            System.out.println(" \t Por Canciones");
+            try {
+                opc = Integer.parseInt(buf.readLine());
+            } catch (NumberFormatException ex) {
+                opc = 0;               
+            }
+            switch(opc)
+            {                        
+                case 1:
+                    System.out.println("Introduzca un nombre para buscar por titulo:");
+                    tituloParaBuscar = buf.readLine();
+                    discosEncontrados = disco.buscardisco(discos, tituloParaBuscar);
+                    if(discosEncontrados == null || discosEncontrados.isEmpty())
+                    {
+                           System.out.println("No se encontro ningun disco con ese titulo.");
+                    }
+                    else
+                    {
+                        disco.imprimirDisco(discosEncontrados);
+                    }
+                    break;
+                case 2:
+                    System.out.println("Introduzca un nombre para buscar por Discografia:");
+                    tituloParaBuscar = buf.readLine();
+                    discosEncontrados = disco.buscarDiscoPorDiscografia(tituloParaBuscar, discos);
+                    if(discosEncontrados == null || discosEncontrados.isEmpty())
+                    {
+                           System.out.println("No se encontro ningun libro con esa editorial.");
+                    }
+                    else
+                    {
+                        disco.imprimirDisco(discosEncontrados);
+                    }
+                    break; 
+                case 3:
+                    System.out.println("Introduzca un nombre para buscar por Discografia:");
+                    tituloParaBuscar = buf.readLine();
+                    discosEncontrados = disco.buscarDiscoPorCanciones(tituloParaBuscar, discos);
+                    if(discosEncontrados == null || discosEncontrados.isEmpty())
+                    {
+                           System.out.println("No se encontro ningun libro con esa editorial.");
+                    }
+                    else
+                    {
+                        disco.imprimirDisco(discosEncontrados);
+                    }
+                    break; 
+                default: 
+                    System.out.println("\n  ** Opción Errada **");
+            }            
+        }    
+    
+    }
+
 }
