@@ -69,6 +69,7 @@ public class Disco extends Obra
         return resultados;
     }
     
+    // Búsqueda de discografia
     public List<Disco> buscarDiscoPorDiscografia( String titulo, List<Disco> discos){
         List<Disco> encontrados=new ArrayList<Disco>();
 
@@ -81,7 +82,7 @@ public class Disco extends Obra
         }
         return encontrados;
     }
-    
+    // busqueda por canciones
         public List<Disco> buscarDiscoPorCanciones( String cancion, List<Disco> discos){
         List<Disco> encontrados=new ArrayList<Disco>();
 
@@ -93,6 +94,90 @@ public class Disco extends Obra
             }
         }
         return encontrados;
+    }
+        
+  //Carga datos
+    public void cargarDatos(List<Artista> artistas){
+       if(artistas==null || artistas.size()==0)
+       {
+           System.out.println("\n No puede crear Discos hasta tener al menos un artista");
+           return;
+       }
+       InputStreamReader entrada = new InputStreamReader(System.in);
+       BufferedReader buf = new BufferedReader(entrada);
+       try{
+       System.out.print("\t Ingrese Discografía: ");
+       this.setTitulo(buf.readLine());
+       boolean valido=false;
+       int cancion=0;
+       while(!valido){
+         System.out.print("\t Ingrese Canción:");
+         try{
+          cancion=Integer.parseInt(buf.readLine().trim());
+          this.setAnoEdicion(cancion);
+          valido=true;
+         }catch(Exception e){
+             System.out.println("\t Dato inválido");
+         }
+       }
+       
+       valido=false;
+       int limit=artistas.size();
+       while(!valido){
+           System.out.println("Elija Autor del libro");
+           int iterador=1;
+           for (Artista artista : artistas) {
+               System.out.println(iterador+" - "+artista.getNombre());
+               iterador++;
+           }
+           
+          try{
+          cancion=Integer.parseInt(buf.readLine().trim());
+          if(cancion>0 && cancion<=limit){
+              this.setAutor(artistas.get(cancion-1));
+              valido=true;
+          }else{
+              System.out.println("\n Valor inválido ");
+          }
+          
+         }catch(Exception e){
+             System.out.println("\t Dato inválido");
+         }
+           
+       }
+       
+           System.out.println("\n Ingrese Discografía ");
+           this.setDiscografia(buf.readLine());
+           
+           System.out.println("\n Ingrese número de Canciones");
+           valido=false;
+           while(!valido){    
+                     
+                try{
+                    cancion=Integer.parseInt(buf.readLine().trim());
+                valido=true;  
+                this.setNCanciones(cancion);
+                }catch(Exception e){
+             System.out.println("\t Dato inválido");
+             valido=false;
+         }
+           
+       }
+       
+       }catch(Exception e){
+           
+       }
+    }
+    
+    public void imprimirDisco(List<Disco> discos)
+    {
+        if(discos.size() >0)
+        {
+            for (Disco disco : discos) 
+            {
+                disco.imprimir();
+            }
+        }
     }
     
 }
